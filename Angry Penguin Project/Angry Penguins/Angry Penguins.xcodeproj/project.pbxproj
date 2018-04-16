@@ -22,6 +22,9 @@
 		957E85CB2083FF1D00328FB9 /* Penguin.sks in Resources */ = {isa = PBXBuildFile; fileRef = 957E85CA2083FF1D00328FB9 /* Penguin.sks */; };
 		957E85CD2084025700328FB9 /* MSReferenceNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957E85CC2084025700328FB9 /* MSReferenceNode.swift */; };
 		957E85D1208402F400328FB9 /* Seal.sks in Resources */ = {isa = PBXBuildFile; fileRef = 957E85D0208402F400328FB9 /* Seal.sks */; };
+		95F7DB9020844C9900B98188 /* MainMenuScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 95F7DB8F20844C9900B98188 /* MainMenuScene.sks */; };
+		95F7DB9220844D0E00B98188 /* MSButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F7DB9120844D0E00B98188 /* MSButtonNode.swift */; };
+		95F7DB9420844D9300B98188 /* MainMenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F7DB9320844D9300B98188 /* MainMenuScene.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +66,9 @@
 		957E85CA2083FF1D00328FB9 /* Penguin.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Penguin.sks; sourceTree = "<group>"; };
 		957E85CC2084025700328FB9 /* MSReferenceNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MSReferenceNode.swift; sourceTree = "<group>"; };
 		957E85D0208402F400328FB9 /* Seal.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Seal.sks; sourceTree = "<group>"; };
+		95F7DB8F20844C9900B98188 /* MainMenuScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MainMenuScene.sks; sourceTree = "<group>"; };
+		95F7DB9120844D0E00B98188 /* MSButtonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MSButtonNode.swift; sourceTree = "<group>"; };
+		95F7DB9320844D9300B98188 /* MainMenuScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuScene.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +123,9 @@
 				957E85CC2084025700328FB9 /* MSReferenceNode.swift */,
 				957E85CA2083FF1D00328FB9 /* Penguin.sks */,
 				957E858E2083DEA200328FB9 /* AppDelegate.swift */,
+				95F7DB8F20844C9900B98188 /* MainMenuScene.sks */,
+				95F7DB9320844D9300B98188 /* MainMenuScene.swift */,
+				95F7DB9120844D0E00B98188 /* MSButtonNode.swift */,
 				957E85D0208402F400328FB9 /* Seal.sks */,
 				957E85C82083EEAB00328FB9 /* Bear.sks */,
 				957E85902083DEA200328FB9 /* GameScene.sks */,
@@ -260,6 +269,7 @@
 				957E85CB2083FF1D00328FB9 /* Penguin.sks in Resources */,
 				957E85C92083EEAB00328FB9 /* Bear.sks in Resources */,
 				957E859A2083DEA200328FB9 /* Main.storyboard in Resources */,
+				95F7DB9020844C9900B98188 /* MainMenuScene.sks in Resources */,
 				957E85912083DEA200328FB9 /* GameScene.sks in Resources */,
 				957E85C52083ED5D00328FB9 /* assets.atlas in Resources */,
 				957E859C2083DEA200328FB9 /* Assets.xcassets in Resources */,
@@ -289,10 +299,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95F7DB9420844D9300B98188 /* MainMenuScene.swift in Sources */,
 				957E85952083DEA200328FB9 /* GameScene.swift in Sources */,
 				957E85CD2084025700328FB9 /* MSReferenceNode.swift in Sources */,
 				957E85972083DEA200328FB9 /* GameViewController.swift in Sources */,
 				957E858F2083DEA200328FB9 /* AppDelegate.swift in Sources */,
+				95F7DB9220844D0E00B98188 /* MSButtonNode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

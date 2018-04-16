@@ -3,11 +3,11 @@ import SpriteKit
 class GameScene: SKScene {
     
     /* Game object connections */
-    var catapultArm: SKSpriteNode!
+    var catapultArm: SKSpriteNode?
     
     override func didMove(to view: SKView) {
         /* Set reference to catapultArm SKSpriteNode */
-        catapultArm = childNode(withName: "catapultArm") as! SKSpriteNode!
+        catapultArm = childNode(withName: "catapultArm") as? SKSpriteNode
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -17,7 +17,9 @@ class GameScene: SKScene {
         addChild(penguin)
         
         /* Move penguin to the catapult bucket area */
-        penguin.avatar.position = catapultArm.position + CGPoint(x: 32, y: 50)
+        if catapultArm != nil{
+            penguin.avatar.position = (catapultArm?.position)! + CGPoint(x: 22, y: 50)
+        }
     }
     
     override func update(_ currentTime: TimeInterval) {

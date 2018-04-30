@@ -16,6 +16,8 @@ class GameScene: SKScene {
         let penguin = MSReferenceNode(fileNamed: "Penguin")
         addChild(penguin)
         
+        print(catapultArm?.position as Any)
+        
         /* Move penguin to the catapult bucket area */
         if catapultArm != nil{
             penguin.avatar.position = (catapultArm?.position)! + CGPoint(x: 32, y: 50)

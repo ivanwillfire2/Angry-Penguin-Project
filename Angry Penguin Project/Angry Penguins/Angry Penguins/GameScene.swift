@@ -16,12 +16,20 @@ class GameScene: SKScene {
         let penguin = MSReferenceNode(fileNamed: "Penguin")
         addChild(penguin)
         
-        print(catapultArm?.position as Any)
         
         /* Move penguin to the catapult bucket area */
         if catapultArm != nil{
             penguin.avatar.position = (catapultArm?.position)! + CGPoint(x: 32, y: 50)
         }
+        
+        /* Impulse vector */
+        let launchDirection = CGVector(dx: 1, dy: 0)
+        let force = launchDirection * 300
+        
+        print(force)
+        
+        /* Apply impulse to penguin */
+        penguin.avatar.physicsBody?.applyImpulse(force)
     }
     
     override func update(_ currentTime: TimeInterval) {

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9539B1E8209E558000B09BA3 /* Level1.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9539B1E7209E558000B09BA3 /* Level1.sks */; };
 		95560BF92096CD1300824570 /* CharacterActions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 95560BF82096CD1300824570 /* CharacterActions.sks */; };
 		957E858F2083DEA200328FB9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957E858E2083DEA200328FB9 /* AppDelegate.swift */; };
 		957E85912083DEA200328FB9 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 957E85902083DEA200328FB9 /* GameScene.sks */; };
@@ -58,6 +59,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9539B1E7209E558000B09BA3 /* Level1.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level1.sks; sourceTree = "<group>"; };
 		95560BF82096CD1300824570 /* CharacterActions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = CharacterActions.sks; sourceTree = "<group>"; };
 		957E858B2083DEA200328FB9 /* Angry Penguins.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Angry Penguins.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		957E858E2083DEA200328FB9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -155,6 +157,7 @@
 				95F7DB9320844D9300B98188 /* MainMenuScene.swift */,
 				95F7DB9120844D0E00B98188 /* MSButtonNode.swift */,
 				957E85D0208402F400328FB9 /* Seal.sks */,
+				9539B1E7209E558000B09BA3 /* Level1.sks */,
 				957E85C82083EEAB00328FB9 /* Bear.sks */,
 				957E85902083DEA200328FB9 /* GameScene.sks */,
 				957E85922083DEA200328FB9 /* Actions.sks */,
@@ -314,6 +317,7 @@
 			files = (
 				957E85D1208402F400328FB9 /* Seal.sks in Resources */,
 				957E85CB2083FF1D00328FB9 /* Penguin.sks in Resources */,
+				9539B1E8209E558000B09BA3 /* Level1.sks in Resources */,
 				957E85C92083EEAB00328FB9 /* Bear.sks in Resources */,
 				957E859A2083DEA200328FB9 /* Main.storyboard in Resources */,
 				95F7DB9020844C9900B98188 /* MainMenuScene.sks in Resources */,

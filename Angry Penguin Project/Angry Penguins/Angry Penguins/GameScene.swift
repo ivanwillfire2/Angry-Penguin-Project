@@ -19,6 +19,9 @@ class GameScene: SKScene {
     var lastTrackerPosition = CGPoint(x: 0, y: 0)
     var lastTimeInterval:TimeInterval = 0
     
+    /* UI Connections */
+    var buttonRestart: MSButtonNode!
+    
     override func didMove(to view: SKView) {
         /* Set reference to catapultArm SKSpriteNode */
         catapultArm = childNode(withName: "catapultArm") as! SKSpriteNode!
@@ -30,6 +33,31 @@ class GameScene: SKScene {
         let resourcePath = Bundle.main.path(forResource: "Level1", ofType: "sks")
         let level = SKReferenceNode (url: URL (fileURLWithPath: resourcePath!))
         levelHolder.addChild(level)
+        
+        /* Set reference to buttonRestart SKSpriteNode */
+        buttonRestart = childNode(withName: "//buttonRestart") as! MSButtonNode
+        
+        /* Setup button selection handler */
+        buttonRestart.selectedHandler = { [unowned self] in
+            
+            if let view = self.view {
+                
+                // Load the SKScene from 'GameScene.sks'
+                if let scene = SKScene(fileNamed: "GameScene") {
+                    
+                    // Set the scale mode to scale to fit the window
+                    scene.scaleMode = .aspectFill
+                    
+                    // Present the scene
+                    view.presentScene(scene)
+                }
+                
+                // Debug helpers
+                view.showsFPS = true
+                view.showsPhysics = true
+                view.showsDrawCount = true
+            }
+        }
         
     }
     

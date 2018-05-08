@@ -1,6 +1,6 @@
 import SpriteKit
 
-class GameScene: SKScene {
+class GameScene: SKScene, SKPhysicsContactDelegate{
     
     /* Game object connections */
     var catapultArm: SKSpriteNode!
@@ -28,6 +28,10 @@ class GameScene: SKScene {
     
     /* Physics helpers */
     var touchJoint: SKPhysicsJointSpring?
+    
+    var penguinJoint: SKPhysicsJointPin?
+    
+    var cameraTarget: SKSpriteNode?
     
     override func didMove(to view: SKView) {
         /* Set reference to catapultArm SKSpriteNode */
@@ -98,6 +102,9 @@ class GameScene: SKScene {
         /* Make this joint a bit more springy */
         catapultSpringJoint.frequency = 1.5
         
+        /* Set physics contact delegate */
+        physicsWorld.contactDelegate = self
+        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -121,6 +128,20 @@ class GameScene: SKScene {
                 touchJoint = SKPhysicsJointSpring.joint(withBodyA: touchNode.physicsBody!, bodyB: catapultArm.physicsBody!, anchorA: location, anchorB: location)
                 physicsWorld.add(touchJoint!)
                 
+                let penguin = MSReferenceNode(fileNamed: "Penguin")
+                addChild(penguin)
+                if catapultArm != nil{
+                    penguin.avatar.position = (catapultArm?.position)! + CGPoint(x: 32, y: 50)
+                }
+                
+                /* Improves physics collision handling of fast moving objects */
+                penguin.avatar.physicsBody?.usesPreciseCollisionDetection = true
+                
+                /* Setup pin joint between penguin and catapult arm */
+                penguinJoint = SKPhysicsJointPin.joint(withBodyA: catapultArm.physicsBody!, bodyB: penguin.avatar.physicsBody!, anchor: penguin.avatar.position)
+                physicsWorld.add(penguinJoint!)
+
+                cameraTarget = penguin.avatar
             }
         }
     }
@@ -138,6 +159,42 @@ class GameScene: SKScene {
         }
     }
     
+    func dieSeal(_ node: SKNode) {
+        /* Seal death*/
+        
+        /* Create our seal removal action */
+        let sealDeath = SKAction.removeFromParent()
+        node.run(sealDeath)
+    }
+    
+    func didBegin(_ contact: SKPhysicsContact) {
+        /* Physics contact delegate implementation */
+        
+        /* Get references to the bodies involved in the collision */
+        let contactA:SKPhysicsBody = contact.bodyA
+        let contactB:SKPhysicsBody = contact.bodyB
+        
+        /* Get references to the physics body parent SKSpriteNode */
+        let nodeA = contactA.node as! SKSpriteNode
+        let nodeB = contactB.node as! SKSpriteNode
+        
+        /* Was a seal involved? */
+        if contactA.categoryBitMask == 2 || contactB.categoryBitMask == 2 {
+            
+            /* Was it more than a gentle nudge? */
+            if contact.collisionImpulse > 2.0 {
+                
+                /* Kill Seal(s) */
+                if contactA.categoryBitMask == 2 {
+                    dieSeal(nodeA)
+                }
+                if contactB.categoryBitMask == 2 {
+                    dieSeal(nodeB)
+                }
+            }
+        }
+    }
+    
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         /* Called when a touch ended */
         
@@ -145,6 +202,23 @@ class GameScene: SKScene {
         if let touchJoint = touchJoint {
             physicsWorld.remove(touchJoint)
         }
+        
+        if let penguinJoint = penguinJoint {
+            physicsWorld.remove(penguinJoint)
+        }
+        
+        // Check if there is a penuin assigned to the cameraTarget
+        guard let penguin = cameraTarget else {
+            return
+        }
+        // Generate a vector and a force based on the angle of the arm.
+        let force: CGFloat = 350
+        let r = catapultArm.zRotation
+        let dx = cos(r) * force
+        let dy = sin(r) * force
+        // Apply an impulse at the vector.
+        let v = CGVector(dx: dx, dy: dy)
+        penguin.physicsBody?.applyImpulse(v)
     }
     
     override func update(_ currentTime: TimeInterval) {

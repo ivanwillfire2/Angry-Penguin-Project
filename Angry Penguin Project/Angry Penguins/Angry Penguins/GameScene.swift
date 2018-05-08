@@ -142,6 +142,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
                 physicsWorld.add(penguinJoint!)
 
                 cameraTarget = penguin.avatar
+                
+                /* Set tracker to follow penguin */
+                trackerNode = penguin.avatar
             }
         }
     }
@@ -161,6 +164,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
     
     func dieSeal(_ node: SKNode) {
         /* Seal death*/
+        /* Load our particle effect */
+        let particles = SKEmitterNode(fileNamed: "SealExplosion")!
+        
+        /* Convert node location (currently inside LevelHolder, to scene space) */
+        particles.position = convert(node.position, from: node)
+        
+        /* Restrict total particles to reduce runtime of particle */
+        particles.numParticlesToEmit = 25
+        
+        /* Add particles to scene */
+        addChild(particles)
+        
+        /* Play SFX */
+        let sound = SKAction.playSoundFileNamed("sfx_seal", waitForCompletion: false)
+        self.run(sound)
         
         /* Create our seal removal action */
         let sealDeath = SKAction.removeFromParent()

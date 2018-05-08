@@ -251,11 +251,41 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
             let moveDuration = currentTime - lastTimeInterval
             
             /* Create a move action for the camera */
-            let moveCamera = SKAction.moveBy(x: moveDistance, y: 0, duration: moveDuration)
-            camera.run(moveCamera)
+            /* Create a move action for the camera */
+            if camera.position.x + moveDistance >= 0 && camera.position.x + moveDistance <= 392 {
+                let moveCamera = SKAction.moveBy(x: moveDistance, y: 0, duration: moveDuration)
+                camera.run(moveCamera)
+            }
             
             /* Store last tracker position */
             lastTrackerPosition = trackerNode.position
+            
+            /* Has penguin come to a near stand still */
+            let idleVelocity:CGFloat = 0.15
+            
+            /* Is the penguin currently joined to the catapult */
+            let nodeJoints = trackerNode.physicsBody?.joints.count
+            
+            if trackerNode.physicsBody!.velocity.length() < idleVelocity &&
+                nodeJoints == 0 {
+                
+                /* Reset tracker node */
+                self.trackerNode = nil
+                
+                /* Move camera back to start position */
+                let resetCamera = SKAction.moveTo(x: 0, duration: 1.0)
+                camera.run(resetCamera)
+                
+                /* Reset catapult arm */
+                catapultArm.physicsBody?.velocity = CGVector(dx:0,dy:0)
+                catapultArm.physicsBody?.angularVelocity = 0.0
+                catapultArm.zRotation = 0
+                catapultArm.position = CGPoint(x:-81,y:31)
+                
+                /* Remove penguin */
+                let removeNode = SKAction.removeFromParent()
+                trackerNode.run(removeNode)
+            }
         }
         
         /* Store current update step time */
